@@ -21,7 +21,7 @@ jobs:
           DOCKER_PLATFORMS: linux/amd64,linux/arm/v7
           VERSION: edge
         run: |
-          TAGS="--tag ${DOCKER_IMAGE,,}:${VERSION} --tag ${DOCKER_IMAGE,,}:latest"
+          TAGS="--tag ${DOCKER_IMAGE,,}:${VERSION}"
           echo ::set-output name=docker_image::${DOCKER_IMAGE,,}
           echo ::set-output name=version::${VERSION}
           echo ::set-output name=buildx_args::--platform ${DOCKER_PLATFORMS} \
