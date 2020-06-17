@@ -14,21 +14,20 @@ if (MQTT_BROKER is None):
   print("MQTT_BROKER must be set")
   sys.exit(-1)
 
-MQTT_TOPIC       = os.environ.get("MQTT_TOPIC")
+MQTT_TOPIC       = os.environ.get("MQTT_TOPIC", "{{sample.name}}/status/{{sample.labels.id}}")
 if (MQTT_TOPIC is None):
   print("MQTT_TOPIC must be set")
   sys.exit(-1)
 
-METRICS_ENDPOINT = os.environ.get("METRICS_ENDPOINT")
+METRICS_ENDPOINT = os.environ.get("METRICS_ENDPOINT", "http://localhost:9330/metrics")
 if (METRICS_ENDPOINT is None):
   print("METRICS_ENDPOINT must be set")
   sys.exit(-1)
 
-UPDATE_INTERVAL  = os.environ.get("UPDATE_INTERVAL")
+UPDATE_INTERVAL  = os.environ.get("UPDATE_INTERVAL", 60)
 if (UPDATE_INTERVAL is None):
   print("UPDATE_INTERVAL must be set")
   sys.exit(-1)
-
 
 def main(argv):
   #with open('prom.txt', 'r') as file:

@@ -1,16 +1,18 @@
 FROM python:3.8.3-alpine
 LABEL maintainer="Andrew Cole <andrew.cole@illallangi.com>"
 
-ENV MQTT_TOPIC={{sample.name}}/status/{{sample.labels.id}}
-ENV METRICS_ENDPOINT=http://localhost:9330/metrics
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONIOENCODING=UTF-8 \
+    LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8 \
+    XDG_CONFIG_HOME=/config
+WORKDIR /usr/src/app
 
-RUN pip install \
-  jinja2 \
-  paho-mqtt \
-  prometheus_client \
-  requests
+ADD requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
-ADD . /src/
+ADD . /usr/src/app
 
-WORKDIR /src
-CMD /src/app.py
+RUN chmod +x app.py
+
+ENTRYPOINT ["/usr/src/app/app.py"]
