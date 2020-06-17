@@ -30,10 +30,7 @@ if (UPDATE_INTERVAL is None):
   print("UPDATE_INTERVAL must be set")
   sys.exit(-1)
 
-def main(argv):
-  #with open('prom.txt', 'r') as file:
-  #  metrics = file.read()
-
+def main():
   mqttc = mqtt.Client()
   mqttc.connect(MQTT_BROKER)
 
@@ -62,4 +59,4 @@ def main(argv):
   mqttc.disconnect()
 
 if __name__ == "__main__":
-  main(sys.argv)
+  main()
