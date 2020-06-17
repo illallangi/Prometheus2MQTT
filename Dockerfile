@@ -6,6 +6,7 @@ ENV PYTHONUNBUFFERED=1 \
     LC_ALL=en_US.UTF-8 \
     LANG=en_US.UTF-8 \
     XDG_CONFIG_HOME=/config
+
 WORKDIR /usr/src/app
 
 ADD requirements.txt requirements.txt
@@ -13,6 +14,6 @@ RUN pip3 install -r requirements.txt
 
 ADD . /usr/src/app
 
-RUN chmod +x app.py
+RUN pip3 install .
 
-ENTRYPOINT ["/usr/src/app/app.py"]
+ENTRYPOINT ["/usr/local/bin/prometheus2mqtt"]
