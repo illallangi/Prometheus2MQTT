@@ -31,9 +31,6 @@ if (UPDATE_INTERVAL is None):
   sys.exit(-1)
 
 def main():
-  #with open('prom.txt', 'r') as file:
-  #  metrics = file.read()
-
   mqttc = mqtt.Client()
   mqttc.connect(MQTT_BROKER)
 
